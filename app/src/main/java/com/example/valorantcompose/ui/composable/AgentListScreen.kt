@@ -1,6 +1,7 @@
 package com.example.valorantcompose.ui.composable
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,24 +21,27 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.valorantcompose.data.model.agents.DataModel
+import com.example.valorantcompose.ui.routes.NavRoutes
 import com.example.valorantcompose.ui.viewmodel.AgentViewModel
 
 @Composable
 fun AgentListScreen(
-    agentViewModel: AgentViewModel = hiltViewModel()
+    agentViewModel: AgentViewModel = hiltViewModel(),
+    navController: NavController
 ) {
     val agents by agentViewModel.agents.collectAsState()
 
-    AgentList(agents = agents)
+    AgentList(agents = agents, navController = navController)
 }
 
 @Composable
-fun AgentList(agents: List<DataModel>) {
+fun AgentList(agents: List<DataModel>, navController: NavController) {
     LazyColumn {
         items(agents) { agent ->
-            AgentListItem(agent = agent)
+            AgentListItem(agent = agent, navController)
         }
     }
 }
@@ -45,9 +49,12 @@ fun AgentList(agents: List<DataModel>) {
 
 
 @Composable
-fun AgentListItem(agent: DataModel) {
+fun AgentListItem(agent: DataModel, navController: NavController) {
     Card(
         modifier = Modifier
+            .clickable {
+                navController.navigate(route = NavRoutes.AgentDetails.route)
+            }
             .fillMaxWidth()
             .padding(8.dp),
     ) {

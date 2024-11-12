@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.13"
     }
     packaging {
         resources {
@@ -90,6 +90,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6")
 
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    implementation("androidx.compose.material:material:1.7.5")
 
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 

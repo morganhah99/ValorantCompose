@@ -24,6 +24,9 @@ class AgentViewModel @Inject constructor(
     private val _agents = MutableStateFlow<List<DataModel>>(emptyList())
     val agents: StateFlow<List<DataModel>> get() = _agents
 
+    private val _selectedAgent = MutableStateFlow<DataModel?>(null)
+    val selectedAgent: StateFlow<DataModel?> get() = _selectedAgent
+
     init {
         fetchAgents()
     }
@@ -43,6 +46,10 @@ class AgentViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun selectAgent(agent: DataModel) {
+        _selectedAgent.value = agent
     }
 
     private suspend fun saveAgentsToCache(agents: List<DataModel>) {

@@ -1,4 +1,4 @@
-package com.example.valorantcompose.ui.theme
+package com.example.valorantcompose.ui.common.theme
 
 import android.app.Activity
 import android.os.Build

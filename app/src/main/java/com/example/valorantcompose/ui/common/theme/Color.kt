@@ -1,4 +1,4 @@
-package com.example.valorantcompose.ui.theme
+package com.example.valorantcompose.ui.common.theme
 
 import androidx.compose.ui.graphics.Color
 
